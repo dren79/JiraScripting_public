@@ -130,3 +130,5 @@ dmypy.json
 
  # project speciffic
  .env
+ .idea
+ .idea/*

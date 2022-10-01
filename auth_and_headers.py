@@ -5,21 +5,14 @@ import os
 load_dotenv()
 
 
-def auth_and_headers():
-    auth = requests.auth.HTTPBasicAuth(os.environ.get("JIRA_EMAIL"), os.environ.get("API_KEY"))
+def jira_auth_and_headers():
+    auth = requests.auth.HTTPBasicAuth(os.environ.get("JIRA_EMAIL_DR"), os.environ.get("API_KEY_DR"))
 
     headers = {
         "Accept": "application/json",
         "Content-Type": "application/json"
     }
 
-    url = os.environ.get("BASE_URL")
+    url = os.environ.get("BASE_URL_DR")
 
     return auth, headers, url
-
-
-def gc_client_secret():
-    client = os.environ.get("GC_CLIENT")
-    secret = os.environ.get("GC_SECRET")
-
-    return client, secret
