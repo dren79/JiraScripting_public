@@ -132,3 +132,15 @@ dmypy.json
  .env
  .idea
  .idea/*
+
+ just_for_fun/images.*
+ !just_for_fun/qr_code/images/.gitkeep
+
+ just_for_fun/qr_codes.*
+ !just_for_fun/qr_code/qr_codes/.gitkeep
+
+part_1_story_creation/reports/*
+!part_1_story_creation/reports/.gitkeep
+
+part_2_epic_creation/reports/*
+!part_2_epic_creation/reports/.gitkeep
