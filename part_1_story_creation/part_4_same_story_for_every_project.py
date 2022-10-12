@@ -10,10 +10,12 @@ assignable_users = get_all_assignable_users_email('D1')
 
 campaign_report = {}
 
-for project in all_projects:
-    campaign_report[f"{project.get('key', None)}"] = {}
+project_keys = []
 
-for project_key in campaign_report:
+for project in all_projects:
+    project_keys.append(project.get('key', None))
+
+for project_key in project_keys:
     if project_key is not None:
         created_issue = create_issue(
             summary=f"I am a test in project {project_key}"

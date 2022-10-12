@@ -2,8 +2,11 @@ import json
 
 from create_jira_tickets.create_jira_epic import create_epic
 from helpers import create_epic_link
+from just_for_fun.HTML.json_to_html import json_to_html_page
 
 epic_names = ["Epic one", "Epic two", "Epic three"]
+
+campaign_report = {}
 
 uber_epic_creation = create_epic(
     summary="This is a summary",
@@ -14,6 +17,8 @@ uber_epic_creation = create_epic(
     assignee_id='-1')
 json_res = json.loads(uber_epic_creation.text)
 uber_epic_key = json_res['key']
+campaign_report['uber_epic'] = {f'{uber_epic_key}': {}}
+campaign_report[f'epics'] = {}
 
 for epic_name in epic_names:
     epic_creation = create_epic(
@@ -25,6 +30,16 @@ for epic_name in epic_names:
         assignee_id='-1')
     json_res = json.loads(epic_creation.text)
     epic_key = json_res['key']
+    campaign_report['epics'][f'{epic_key}'] = {}
 
     link_response = create_epic_link(epic_key, uber_epic_key, 'Relates')
     print(link_response)
+
+campaign_name = "my_super_report"
+with open(f'reports/{campaign_name}_report.json', 'w') as outfile:
+    json.dump(campaign_report, outfile)
+
+html_page = json_to_html_page(campaign_report)
+file = open(f'reports/{campaign_name}_report.html', 'w')
+file.write(html_page)
+file.close()

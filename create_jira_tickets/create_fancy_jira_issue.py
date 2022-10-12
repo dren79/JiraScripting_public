@@ -1,42 +1,37 @@
 import requests
 import json
+from pyadf.document import Document
 from auth_and_headers import jira_auth_and_headers
 
 
-def create_issue(summary, project, description, epic_link=None, assignee_id=None, components=None, priority="3", issue_type="Story"):
-    """Creates a story under an epic
+def create_issue(summary, project, description_document, epic_link=None, assignee_id=None, components=None,
+                 priority="3", issue_type="Story"):
+    """Creates an ADF(markdown) story under an epic, use the pyadf library to build out the description document
+    https://developer.atlassian.com/cloud/jira/platform/apis/document/libs/
 
       Parameters:
           summary (string): The issue summary.
           project (string): Project key eg. SECCOMPPM.
-          description (string): The issue description.
-          epic_link (string): The epic identifier eg: SECCOMPPM-93.
-          assignee_id (string): The ID of the assignable user.
+          description (string): Use the Document Builder here https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/.
+          epic_link (string): The epic identifier eg: D1-1.
+          assignee_id (string): The ID of the assignable user (use get_assignable_users to get this).
           components (string): The component ID is mandatory on some boards where one project satisfies multiple services.
           issue_type (string): Text description of what entity you wish to create eg, Story, Bug, Task
-          priority(string): Text Highest, High, Medium, Low, Lowest
+          priority(string): Text - Highest, High, Medium, Low, Lowest
 
       Returns:
         response object: This will have the response code and in the text will have the details of the created issue.
 
      """
     auth, headers, base_url = jira_auth_and_headers()
-    # create content
-    content_list = []
-    paragraph_content = []
-    content_obj = {}
-    content = {'text': description, 'type': "text"}
-    content_obj['type'] = "paragraph"
-    paragraph_content.append(content)
-    content_obj['content'] = paragraph_content
 
     # create issue
     issue = {'fields': {}}
     issue['fields']['summary'] = summary
     issue['fields']['issuetype'] = {'name': issue_type}
     issue['fields']['project'] = {'key': project}
-    content_list.append(content_obj)
-    issue['fields']['description'] = {'type': "doc", 'version': 1, 'content': content_list}
+
+    issue['fields']['description'] = description_document
     issue['fields']['priority'] = {'name': priority}
     if assignee_id is not None:
 
@@ -54,26 +49,153 @@ def create_issue(summary, project, description, epic_link=None, assignee_id=None
     payload = json.dumps(issue)
 
     response = requests.request(
-       "POST",
-       url,
-       data=payload,
-       headers=headers,
-       auth=auth
+        "POST",
+        url,
+        data=payload,
+        headers=headers,
+        auth=auth
     )
     return response
 
 
 if __name__ == "__main__":
+    formatted_description = {
+        "version": 1,
+        "type": "doc",
+        "content": [
+            {
+                "type": "paragraph",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "Generated from the "
+                    },
+                    {
+                        "type": "text",
+                        "text": "Document Builder",
+                        "marks": [
+                            {
+                                "type": "link",
+                                "attrs": {
+                                    "href": "https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "paragraph",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "I am bold",
+                        "marks": [
+                            {
+                                "type": "strong"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "paragraph",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "I am itallic",
+                        "marks": [
+                            {
+                                "type": "em"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "paragraph",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "List"
+                    }
+                ]
+            },
+            {
+                "type": "bulletList",
+                "content": [
+                    {
+                        "type": "listItem",
+                        "content": [
+                            {
+                                "type": "paragraph",
+                                "content": [
+                                    {
+                                        "type": "text",
+                                        "text": "one"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "listItem",
+                        "content": [
+                            {
+                                "type": "paragraph",
+                                "content": [
+                                    {
+                                        "type": "text",
+                                        "text": "two"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "listItem",
+                        "content": [
+                            {
+                                "type": "paragraph",
+                                "content": [
+                                    {
+                                        "type": "text",
+                                        "text": "three"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "paragraph",
+                "content": []
+            },
+            {
+                "type": "codeBlock",
+                "attrs": {
+                    "language": "python"
+                },
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "def some_python_method():\n  me = some_variable\n  return me"
+                    }
+                ]
+            }
+        ]
+    }
     res = create_issue(
-        summary="Delete Me"
+        summary="MarkDown Test"
         , project="D1"
-        , description="This is a test, please delete me."
+        , description_document=formatted_description
         , issue_type="Story"
         # , epic_link="SECCOMPPM-6"
-        , assignee_id="david renton"
+        , assignee_id="557058:e747a920-b560-47ee-82e3-94ffe7a59a1b"
         , priority='High'
         # , components="30075"
-        )
+    )
     if res.status_code == 400:
         json_res = json.loads(res.text)
         print(json_res['errors'])
