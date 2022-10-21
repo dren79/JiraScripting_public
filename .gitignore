@@ -128,16 +128,16 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
- # project speciffic
- .env
- .idea
- .idea/*
+# project speciffic
+.env
+.idea
+.idea/*
 
- just_for_fun/images.*
- !just_for_fun/qr_code/images/.gitkeep
+just_for_fun/images.*
+!just_for_fun/qr_code/images/.gitkeep
 
- just_for_fun/qr_codes.*
- !just_for_fun/qr_code/qr_codes/.gitkeep
+just_for_fun/qr_codes.*
+!just_for_fun/qr_code/qr_codes/.gitkeep
 
 part_1_story_creation/reports/*
 !part_1_story_creation/reports/.gitkeep
@@ -147,9 +147,9 @@ part_2_epic_creation/reports/*
 
 part_3_creating_from_csv/input/*
 !part_3_creating_from_csv/input/.gitkeep
+!part_3_creating_from_csv/input/MOCK_DATA.csv
+!part_3_creating_from_csv/input/MOCK_DATA_WITH_PROJECT.csv
 
 my_jira_cloud_instance/*
 !my_jira_cloud_instance/.gitkeep
 
-part_3_creating_from_csv/input/*
-!part_3_creating_from_csv/input/.gitkeep
