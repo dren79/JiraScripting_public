@@ -144,3 +144,12 @@ part_1_story_creation/reports/*
 
 part_2_epic_creation/reports/*
 !part_2_epic_creation/reports/.gitkeep
+
+part_3_creating_from_csv/input/*
+!part_3_creating_from_csv/input/.gitkeep
+
+my_jira_cloud_instance/*
+!my_jira_cloud_instance/.gitkeep
+
+part_3_creating_from_csv/input/*
+!part_3_creating_from_csv/input/.gitkeep

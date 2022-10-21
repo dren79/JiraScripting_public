@@ -73,12 +73,12 @@ def send_mail(
 
 if __name__ == '__main__':
     sender_ = 'david.renton@genesys.com'
-    recipients_ = ['eric.cohen@genesys.com', 'devfestireland@gmail.com']
+    recipients_ = ['bammmmmmmmm@gmail.com', 'devfestireland@gmail.com']
     cc_ = ['davidleerenton@gmail.com', 'hello@devfestireland.com', 'geraldinerenton@gmail.com']
     title_ = 'DevFest'
     text_ = 'DevFest is awesome'
     body_ = """<html><head></head><body><h1>A header 1</h1><br>Some text."""
-    attachments_ = ['../../Just for fun/qr_code/qr_codes/with_image.png']
+    attachments_ = ['../../just_for_fun/qr_code/qr_codes/with_image.png']
 
     response_ = send_mail(sender_, recipients_, cc_, title_, text_, body_, attachments_)
     print(response_)

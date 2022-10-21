@@ -4,8 +4,7 @@ from pyadf.document import Document
 from auth_and_headers import jira_auth_and_headers
 
 
-def create_issue(summary, project, description_document, epic_link=None, assignee_id=None, components=None,
-                 priority="3", issue_type="Story"):
+def create_issue(summary, project, description_doc, epic_link=None, assignee_id=None, priority="High", issue_type="Story"):
     """Creates an ADF(markdown) story under an epic, use the pyadf library to build out the description document
     https://developer.atlassian.com/cloud/jira/platform/apis/document/libs/
 
@@ -30,24 +29,17 @@ def create_issue(summary, project, description_document, epic_link=None, assigne
     issue['fields']['summary'] = summary
     issue['fields']['issuetype'] = {'name': issue_type}
     issue['fields']['project'] = {'key': project}
-
-    issue['fields']['description'] = description_document
+    issue['fields']['description'] = description_doc
     issue['fields']['priority'] = {'name': priority}
     if assignee_id is not None:
-
         issue['fields']['assignee'] = {'id': assignee_id}
     else:
         issue['fields']['assignee'] = {'id': "-1"}
-
     if epic_link is not None:
-        issue['fields']['customfield_10300'] = epic_link
-    if components is not None:
-        issue['fields']['components'] = [{'id': components}]
+        issue['fields']['customfield_10014'] = epic_link
 
     url = f"{base_url}/rest/api/3/issue"
-
     payload = json.dumps(issue)
-
     response = requests.request(
         "POST",
         url,
@@ -189,12 +181,11 @@ if __name__ == "__main__":
     res = create_issue(
         summary="MarkDown Test"
         , project="D1"
-        , description_document=formatted_description
+        , description_doc=formatted_description
         , issue_type="Story"
         # , epic_link="SECCOMPPM-6"
         , assignee_id="557058:e747a920-b560-47ee-82e3-94ffe7a59a1b"
         , priority='High'
-        # , components="30075"
     )
     if res.status_code == 400:
         json_res = json.loads(res.text)

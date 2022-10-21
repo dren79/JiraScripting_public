@@ -28,6 +28,7 @@ for project_key in project_keys:
 
         json_res = json.loads(created_issue.text)
         story_key = json_res.get('key', None)
+        campaign_report[f'{project_key}'] = {}
         campaign_report[f'{project_key}']['created_story'] = story_key
 
 campaign_name = "my_super_report"

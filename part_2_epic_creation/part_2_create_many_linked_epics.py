@@ -3,7 +3,7 @@ import json
 from create_jira_tickets.create_jira_epic import create_epic
 from helpers import create_epic_link
 
-epic_names = ["Epic one", "Epic two", "Epic three"]
+epic_names = ["Epic one", "Epic two", "Epic three", "Dave", "Other Dave", "Big Dave", "Tommy Dave", "Jana Dave", "Rich Dave", "Patrick Paterson"]
 
 uber_epic_creation = create_epic(
     summary="This is a summary",

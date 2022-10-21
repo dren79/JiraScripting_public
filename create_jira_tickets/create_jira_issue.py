@@ -3,7 +3,7 @@ import json
 from auth_and_headers import jira_auth_and_headers
 
 
-def create_issue(summary, project, description, epic_link=None, assignee_id=None, components=None, priority="3", issue_type="Story"):
+def create_issue(summary, project, description, epic_link=None, assignee_id=None, priority="High", issue_type="Story"):
     """Creates a story under an epic
 
       Parameters:
@@ -12,7 +12,6 @@ def create_issue(summary, project, description, epic_link=None, assignee_id=None
           description (string): The issue description.
           epic_link (string): The epic identifier eg: SECCOMPPM-93.
           assignee_id (string): The ID of the assignable user.
-          components (string): The component ID is mandatory on some boards where one project satisfies multiple services.
           issue_type (string): Text description of what entity you wish to create eg, Story, Bug, Task
           priority(string): Text Highest, High, Medium, Low, Lowest
 
@@ -39,15 +38,11 @@ def create_issue(summary, project, description, epic_link=None, assignee_id=None
     issue['fields']['description'] = {'type': "doc", 'version': 1, 'content': content_list}
     issue['fields']['priority'] = {'name': priority}
     if assignee_id is not None:
-
         issue['fields']['assignee'] = {'id': assignee_id}
     else:
         issue['fields']['assignee'] = {'id': "-1"}
-
     if epic_link is not None:
-        issue['fields']['customfield_10300'] = epic_link
-    if components is not None:
-        issue['fields']['components'] = [{'id': components}]
+        issue['fields']['customfield_10014'] = epic_link
 
     url = f"{base_url}/rest/api/3/issue"
 
@@ -69,10 +64,9 @@ if __name__ == "__main__":
         , project="D1"
         , description="This is a test, please delete me."
         , issue_type="Story"
-        # , epic_link="SECCOMPPM-6"
-        , assignee_id="david renton"
+        # , epic_link="D1-6"
+        , assignee_id="557058:e747a920-b560-47ee-82e3-94ffe7a59a1b"
         , priority='High'
-        # , components="30075"
         )
     if res.status_code == 400:
         json_res = json.loads(res.text)
