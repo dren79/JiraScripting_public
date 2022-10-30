@@ -40,10 +40,10 @@ def get_single_project(this_project_id):
     url = f"{base_url}/rest/api/3/project/{this_project_id}"
 
     response = requests.request(
-       "GET",
-       url,
-       headers=headers,
-       auth=auth
+        "GET",
+        url,
+        headers=headers,
+        auth=auth
     )
     json_res = json.loads(response.text)
     return json_res
@@ -214,6 +214,23 @@ def add_comment_to_story(this_issue_key, comment):
     )
     return response
 
+
+def add_fancy_comment_to_story(this_issue_key, comment_doc):
+    auth, headers, base_url = jira_auth_and_headers()
+    url = f"{base_url}/rest/api/3/issue/{this_issue_key}/comment"
+    comment_template = {'body': comment_doc}
+    payload = json.dumps(comment_template)
+
+    response = requests.request(
+        "POST",
+        url,
+        data=payload,
+        headers=headers,
+        auth=auth
+    )
+    return response
+
+
 def get_issue_types():
     """Gets all issue types in this jira instance
 
@@ -276,10 +293,83 @@ def get_all_epic_link_types():
     return epic_link_types
 
 
+def get_transitions(issue_key_):
+    """Gets all link types in this jira instance
+
+       Returns:
+           Json Object: describes the available epic linking adjectives
+
+    """
+    auth, headers, base_url = jira_auth_and_headers()
+    url = f"{base_url}/rest/api/3/issue/{issue_key_}/transitions"
+
+    response = requests.request(
+        "GET",
+        url,
+        headers=headers,
+        auth=auth
+    )
+    json_res = json.loads(response.text)
+    # epic_link_types = json_res.get('issueLinkTypes')
+
+    return json_res
+
+
+def get_comments(issue_key_):
+    """Gets all comments in this issue
+
+          Returns:
+              Json Object: returns all comments in json in Jira document format
+
+       """
+    auth, headers, base_url = jira_auth_and_headers()
+    url = f"{base_url}/rest/api/3/issue/{issue_key_}/comment"
+
+    response = requests.request(
+        "GET",
+        url,
+        headers=headers,
+        auth=auth
+    )
+    json_res = json.loads(response.text)
+    # epic_link_types = json_res.get('issueLinkTypes')
+
+    return json_res
+
+
+def transition_issue(issue_key_, stage_id):
+    """Transition issue to defined state
+        Parameters:
+            issue_key_ (string): issue identifier eg: D1-1
+            stage_id (string): The integer id of the desired state of the issue (may be gatheres from get_transitions)
+        Returns:
+            String: Response code, eg. 204
+
+       """
+    auth, headers, base_url = jira_auth_and_headers()
+    url = f"{base_url}/rest/api/3/issue/{issue_key_}/transitions"
+    payload = json.dumps({
+        "transition": {
+            "id": f"{stage_id}"
+        },
+    })
+    response = requests.request(
+        "POST",
+        url,
+        data=payload,
+        headers=headers,
+        auth=auth
+    )
+    status = response.status_code
+    # epic_link_types = json_res.get('issueLinkTypes')
+
+    return f"response: {status}"
+
+
 if __name__ == "__main__":
-    issue_key = "D2-34"
-    issue = get_issue(issue_key)
-    print(json.dumps(issue, indent=4))
+    issue_key = "D1-7"
+    # issue = get_issue(issue_key)
+    # print(json.dumps(issue, indent=4))
     #
     # project_key = "D1"
     # project = get_single_project(project_key)
@@ -305,6 +395,57 @@ if __name__ == "__main__":
     # res = add_comment_to_story(story_id, comment_text)
     # print(res)
 
+    story_id = "D1-7"
+    # Build fancy comments in the same way as fancy descriptions here -
+    # https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/
+    fancy_comment_doc = {
+        "version": 1,
+        "type": "doc",
+        "content": [
+            {
+                "type": "paragraph",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "this is "
+                    }
+                ]
+            },
+            {
+                "type": "paragraph",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "some text"
+                    }
+                ]
+            },
+            {
+                "type": "paragraph",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "and I will tag someone "
+                    },
+                    {
+                        "type": "mention",
+                        "attrs": {
+                            "id": "557058:e747a920-b560-47ee-82e3-94ffe7a59a1b",
+                            "text": "@DR",
+                            "accessLevel": ""
+                        }
+                    },
+                    {
+                        "type": "text",
+                        "text": " "
+                    }
+                ]
+            }
+        ]
+    }
+    # res = add_fancy_comment_to_story(story_id, fancy_comment_doc)
+    # print(res)
+
     # issue_types = get_issue_types()
     # print(json.dumps(issue_types, indent=4))
     #
@@ -314,3 +455,11 @@ if __name__ == "__main__":
     # issue_links = get_all_epic_link_types()
     # print(json.dumps(issue_links, indent=4))
 
+    # comments_in_issue = get_comments(story_id)
+    # print(json.dumps(comments_in_issue, indent=4))
+
+    transitions = get_transitions(issue_key)
+    print(json.dumps(transitions, indent=4))
+
+    # transition_this_issue = transition_issue(issue_key, "31")
+    # print(transition_this_issue)
