@@ -1,3 +1,6 @@
+from datetime import datetime
+
+import pytz
 import requests
 from auth_and_headers import jira_auth_and_headers
 import json
@@ -405,9 +408,9 @@ def transition_issue(issue_key_, stage_id):
 
 
 if __name__ == "__main__":
-    issue_key = "D1-7"
-    # issue = get_issue(issue_key)
-    # print(json.dumps(issue, indent=4))
+    issue_key = "D1-8"
+    issue = get_issue(issue_key)
+    print(json.dumps(issue, indent=4))
     #
     # project_key = "D1"
     # project = get_single_project(project_key)
@@ -421,8 +424,8 @@ if __name__ == "__main__":
     # link_res = create_epic_link("D1-7", "D1-23", "Relates")
     # print(link_res)
     #
-    get_emails = get_issue_assignee('D1-5')
-    print(json.dumps(get_emails, indent=4))
+    # get_emails = get_issue_assignee('D1-5')
+    # print(json.dumps(get_emails, indent=4))
     #
     # epic_name = "D1-7"
     # issues_in_epic = get_stories_from_epic(epic_name)
