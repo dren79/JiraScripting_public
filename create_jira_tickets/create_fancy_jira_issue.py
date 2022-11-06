@@ -1,22 +1,20 @@
 import requests
 import json
-from pyadf.document import Document
 from auth_and_headers import jira_auth_and_headers
 
 
 def create_issue(summary, project, description_doc, epic_link=None, assignee_id=None, priority="High", issue_type="Story"):
     """Creates an ADF(markdown) story under an epic, use the pyadf library to build out the description document
-    https://developer.atlassian.com/cloud/jira/platform/apis/document/libs/
+    https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/
 
       Parameters:
-          summary (string): The issue summary.
-          project (string): Project key eg. SECCOMPPM.
-          description (string): Use the Document Builder here https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/.
-          epic_link (string): The epic identifier eg: D1-1.
-          assignee_id (string): The ID of the assignable user (use get_assignable_users to get this).
-          components (string): The component ID is mandatory on some boards where one project satisfies multiple services.
-          issue_type (string): Text description of what entity you wish to create eg, Story, Bug, Task
-          priority(string): Text - Highest, High, Medium, Low, Lowest
+          :param summary: (string) The issue summary.
+          :param project: (string) Project key eg. D1-1.
+          :param description_doc: (string) Use the Document Builder here https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/.
+          :param epic_link: (string) The epic identifier eg: D1-1.
+          :param assignee_id: (string) The ID of the assignable user (use get_assignable_users to get this).
+          :param issue_type: (string) Text name of the issue type you wish to create eg, Story, Bug, Task
+          :param priority: (string) Text - Highest, High, Medium, Low, Lowest
 
       Returns:
         response object: This will have the response code and in the text will have the details of the created issue.

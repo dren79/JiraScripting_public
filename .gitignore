@@ -151,6 +151,16 @@ part_3_creating_from_csv/input/*
 !part_3_creating_from_csv/input/MOCK_DATA.csv
 !part_3_creating_from_csv/input/MOCK_DATA_WITH_PROJECT.csv
 
+part_4_creating_assigning_and_emailing/input*
+!part_4_creating_assigning_and_emailing/input/.gitkeep
+!part_4_creating_assigning_and_emailing/input/MOCK_DATA_WITH_PROJECT.csv
+!part_4_creating_assigning_and_emailing/input/MOCK_DATA_WITH_PROJECT_3_lines.csv
+!part_4_creating_assigning_and_emailing/input/MOCK_DATA_WITH_PROJECT_6_lines.csv
+
+part_4_creating_assigning_and_emailing/reports/*
+!part_4_creating_assigning_and_emailing/reports/.gitkeep
+
+
 my_jira_cloud_instance/*
 !my_jira_cloud_instance/.gitkeep
 

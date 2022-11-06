@@ -73,7 +73,7 @@ def send_mail(
 
 if __name__ == '__main__':
     sender_ = 'david.renton@genesys.com'
-    recipients_ = ['bammmmmmmmm@gmail.com', 'devfestireland@gmail.com']
+    recipients_ = ['devfestireland@gmail.com']
     cc_ = ['davidleerenton@gmail.com', 'hello@devfestireland.com', 'geraldinerenton@gmail.com']
     title_ = 'DevFest'
     text_ = 'DevFest is awesome'
