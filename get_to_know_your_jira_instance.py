@@ -1,5 +1,3 @@
-import requests
-from auth_and_headers import jira_auth_and_headers
 import json
 
 from helpers import get_issue_types, get_priority_types, get_all_epic_link_types

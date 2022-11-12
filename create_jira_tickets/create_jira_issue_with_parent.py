@@ -43,8 +43,6 @@ def create_issue(summary, project, description, epic_link=None, assignee_id=None
         issue['fields']['assignee'] = {'id': assignee_id}
     else:
         issue['fields']['assignee'] = {'id': "-1"}
-    if epic_link is not None:
-        issue['fields']['customfield_10014'] = epic_link
 
     url = f"{base_url}/rest/api/3/issue"
 

@@ -24,6 +24,8 @@ def create_issue(summary, project, description_doc, epic_link=None, assignee_id=
 
     # create issue
     issue = {'fields': {}}
+    if epic_link is not None:
+        issue['fields']['parent'] = {'key': epic_link}
     issue['fields']['summary'] = summary
     issue['fields']['issuetype'] = {'name': issue_type}
     issue['fields']['project'] = {'key': project}
@@ -33,8 +35,6 @@ def create_issue(summary, project, description_doc, epic_link=None, assignee_id=
         issue['fields']['assignee'] = {'id': assignee_id}
     else:
         issue['fields']['assignee'] = {'id': "-1"}
-    if epic_link is not None:
-        issue['fields']['customfield_10014'] = epic_link
 
     url = f"{base_url}/rest/api/3/issue"
     payload = json.dumps(issue)

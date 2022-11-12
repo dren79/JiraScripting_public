@@ -37,26 +37,27 @@ def make_rounded_qr_code(url):
 
 
 if __name__ == "__main__":
-    website_link = 'https://www.devfestireland.com/'
+    website_link = 'https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/'
     my_path = "qr_codes"
-    image_path = "images/devfestireland.png"
+    image_path = "images/pycon_ireland_22.png"
+    name_ = "adf_builder"
 
-    file_name = "devfestireland_standard.png"
+    file_name = f"{name_}_standard.png"
     saved_path = os.path.join(my_path, file_name)
     qr_code = make_qr_code(website_link)
     qr_code.save(saved_path)
 
-    file_name = "devfestireland_with_image.png"
+    file_name = f"{name_}_with_image.png"
     saved_path = os.path.join(my_path, file_name)
     qr_code = make_qr_with_image_code(website_link, image_path)
     qr_code.save(saved_path)
 
-    file_name = "devfestireland_with_mask.png"
+    file_name = f"{name_}_with_mask.png"
     saved_path = os.path.join(my_path, file_name)
     qr_code = make_qr_with_colour_mask_code(website_link)
     qr_code.save(saved_path)
 
-    file_name = "devfestireland_rounded.png"
+    file_name = f"{name_}_rounded.png"
     saved_path = os.path.join(my_path, file_name)
     qr_code = make_rounded_qr_code(website_link)
     qr_code.save(saved_path)
