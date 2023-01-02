@@ -6,17 +6,25 @@ This is code I have used to create hundreds of Jira tickets in minutes saving ho
 
 Refactors, updates, additions and new ways of using this would be greatly appreciated, please consider contributing. 
 
-### What is this repository for? ###
+## What is this repository for? ##
 
 * Quick summary:
   * Automating Jira Epic & Story creation
   * Commenting on issues
   * Emailing assignees
   * Tracking actions performed for easy follow up
-* Version - working beta
+
+### Usecases ###
+
+* Audit request list (SOC2, C5, PCI DSS)
+* Gap analysis output (Any security gap list from any consultancy)
+* CVE check (Verify non-existence, not vulnerable or updated across many teams with report as evidence)
+* Quarterly security check output that needs to be remediated
+* Multi project upgrade work (e.g. all services need to upgrade encryption to TLS 1.3 or FIPS 140-3)
+* Output work from Datadog or Sumo Logic
 
 
-### How do I get set up? ###
+## How do I get set up? ##
 * Normal Python 3.10 setup should be followed.
   * A virtual environment should be set up `python3 -m venv .`
   * Activate the virtual environment `source venv/Workspace/projects/bin/activate` (this may be different on your system)
@@ -34,7 +42,7 @@ Refactors, updates, additions and new ways of using this would be greatly apprec
 * If creating a report output file (Json files are outputted by some scripts), please put it in the reports folder to avoid sensitive data being committed to the repo.
 
 
-### I'm set up, what's next? ###
+## I'm set up, what's next? ##
 * The repository is set up in folders bringing the user from the basic operations through to the more complete solutions. Part 0 through to part 4.
 * Some functionality is offered in its own folder for easy transplanting into the learner's project for example assignable_users and emailer.
 * The just_for_fun folder is a collection of code used for pairing a presentation on this repository so is offered here as it may help someone down the line.

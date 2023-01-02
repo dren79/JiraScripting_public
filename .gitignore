@@ -161,6 +161,6 @@ part_4_creating_assigning_and_emailing/reports/*
 !part_4_creating_assigning_and_emailing/reports/.gitkeep
 
 
-part_0_my_jira_cloud_instance/*
-!part_0_my_jira_cloud_instance/.gitkeep
+part_0_my_jira_cloud_instance/output/*
+!part_0_my_jira_cloud_instance/output/.gitkeep
 
