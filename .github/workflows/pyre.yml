@@ -36,6 +36,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
+          node-version: 16
 
       - name: Run Pyre
         uses: facebook/pyre-action@60697a7858f7cc8470d8cc494a3cf2ad6b06560d
