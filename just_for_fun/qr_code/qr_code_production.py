@@ -39,8 +39,8 @@ def make_rounded_qr_code(url):
 if __name__ == "__main__":
     website_link = 'https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/'
     my_path = "qr_codes"
-    image_path = "images/pycon_ireland_22.png"
-    name_ = "adf_builder"
+    image_path = "images/Genesys_square_logo.png"
+    name_ = "genesys_request"
 
     file_name = f"{name_}_standard.png"
     saved_path = os.path.join(my_path, file_name)
