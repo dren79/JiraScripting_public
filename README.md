@@ -31,6 +31,7 @@ Refactors, updates, additions and new ways of using this would be greatly apprec
   * Install the imported packages `pip install -r requirements.txt` (this may be different on your system depending on the pip alias)
 * Set up a free instance of Jira Cloud `https://www.atlassian.com/software/jira/free`
 * This demo was set up with three Kanban, Company managed projects named 'Demo 1', 'Demo 2' and 'Demo 3' with keys 'D1', 'D2' and 'D3' for ease of following along, the user may wish to create these also.
+* This demo also has added two alternative emails so the user can see how the system reacts to users that are not the admin, this is not mandatory, however it is suggested the user do the same.
 * Create a copy of the .env_template file and name it `.env` exactly
 * Fill out the necessary fields in the newly created .env file (BASE_URL should look like this - https://YOURPROJECT.atlassian.net)
 * Your API token can be created by: 
