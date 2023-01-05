@@ -31,7 +31,7 @@ Refactors, updates, additions and new ways of using this would be greatly apprec
   * Install the imported packages `pip3 install -r requirements.txt` (this may be different on your system)
 * Set up a free instance of Jira Cloud `https://www.atlassian.com/software/jira/free`
 * Create a copy of the .env_template file and name it `.env` exactly
-* Fill out the necessary fields in the newly created .env file
+* Fill out the necessary fields in the newly created .env file (BASE_URL should look like this - https://YOURPROJECT.atlassian.net)
 * Your API token can be created by: 
   1. logging into Jira Cloud (the one you created earlier)
   2. Click on your avatar in the top right

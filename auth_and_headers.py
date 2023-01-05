@@ -14,13 +14,13 @@ def jira_auth_and_headers():
            url: (String) the base URL for the instance
 
     """
-    auth = requests.auth.HTTPBasicAuth(os.environ.get("JIRA_EMAIL_DR"), os.environ.get("API_KEY_DR"))
+    auth = requests.auth.HTTPBasicAuth(os.environ.get("JIRA_EMAIL"), os.environ.get("API_KEY"))
 
     headers = {
         "Accept": "application/json",
         "Content-Type": "application/json"
     }
 
-    url = os.environ.get("BASE_URL_DR")
+    url = os.environ.get("BASE_URL")
 
     return auth, headers, url
