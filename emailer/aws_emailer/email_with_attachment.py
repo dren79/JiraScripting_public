@@ -72,9 +72,10 @@ def send_mail(
 
 
 if __name__ == '__main__':
+    # replace sender_ with the email address you registered in AWS SES
     sender_ = 'david.renton@genesys.com'
     recipients_ = ['devfestireland@gmail.com']
-    cc_ = ['davidleerenton@gmail.com', 'hello@devfestireland.com', 'geraldinerenton@gmail.com']
+    cc_ = ['davidleerenton@gmail.com', 'hello@devfestireland.com']
     title_ = 'DevFest'
     text_ = 'DevFest is awesome'
     body_ = """<html><head></head><body><h1>A header 1</h1><br>Some text."""

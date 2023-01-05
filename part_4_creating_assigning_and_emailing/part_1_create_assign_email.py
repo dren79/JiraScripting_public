@@ -18,6 +18,7 @@ def main(file_):
         # For each row
         for row in reader:
             # get user id from email, this could be provided in th csv file
+            # replace the below email with one from your jira instance
             assignable_user_email = 'davidleerenton@gmail.com'
             assignable_user_id = assignable_users.get(assignable_user_email, None)
             # these don't need to be assigned, this way just makes it more readable when debugging.
@@ -48,6 +49,7 @@ def main(file_):
                 story_key = json_res['key']
                 print(f"Story created - Key: {story_key} ")
 
+            # replace the sender_ email with the one registered in AWS SES
             sender_ = 'david.renton@genesys.com'
             recipients_ = [f'{assignable_user_email}']
             cc_ = ['davidleerenton@gmail.com', 'hello@devfestireland.com']

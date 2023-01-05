@@ -25,7 +25,7 @@ Refactors, updates, additions and new ways of using this would be greatly apprec
 
 
 ## How do I get set up? ##
-* Normal Python 3.10 setup should be followed.
+* Normal Python 3.10 or higher setup should be followed, download Python here - https://www.python.org/downloads/.
   * A virtual environment should be set up `python -m venv .`
   * Activate the virtual environment `source venv/bin/activate` (this may be different on your system, check the created venv folder to ensure the path to the activate.py file is the same)
   * Install the imported packages `pip install -r requirements.txt` (this may be different on your system depending on the pip alias)

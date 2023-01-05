@@ -34,6 +34,7 @@ def send_mail(sender: str, recipients: list, title: str, html: str = None) -> di
 
 
 if __name__ == '__main__':
+    # replace sender_ with the email address you registered in AWS SES
     sender_ = 'david.renton@genesys.com'
     recipients_ = ['davidleerenton@gmail.com']
     title_ = 'DevFest'

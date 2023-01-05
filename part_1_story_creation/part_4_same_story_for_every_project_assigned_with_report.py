@@ -22,6 +22,7 @@ def main():
                 , project=project_key
                 , description="This is a test, please delete me."
                 , issue_type="Story"
+                # replace the email below with one from your jira project
                 , assignee_id=assignable_users.get('davidleerenton@gmail.com', None)
                 , priority='High'
             )

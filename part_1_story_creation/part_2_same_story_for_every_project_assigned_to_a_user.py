@@ -8,8 +8,9 @@ from helpers import get_all_projects
 def main():
     all_projects = get_all_projects()
     assignable_users = get_all_assignable_users_email('D1')
+    # replace user_email with one you have in your jira instance
     user_email = 'davidleerenton@gmail.com'
-    user_id = assignable_users.get('davidleerenton@gmail.com', None)
+    user_id = assignable_users.get(user_email, None)
 
     for project in all_projects:
         project_key = project.get('key', None)

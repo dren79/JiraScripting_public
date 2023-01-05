@@ -16,6 +16,7 @@ def main(file_):
         # For each row
         for row in reader:
             # get user id from email, this could be provided in th csv file
+            # replace the below email with one from your jira instance
             assignable_user_email = 'davidleerenton@gmail.com'
             assignable_user_id = assignable_users.get(assignable_user_email, None)
 
