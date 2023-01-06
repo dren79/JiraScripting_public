@@ -5,8 +5,9 @@ from create_jira_tickets.create_jira_epic import create_epic
 from helpers import create_epic_link
 from just_for_fun.HTML.json_to_html import json_to_html_page
 
-
 campaign_report = {}
+
+
 def main():
     epic_names = ["Epic one", "Epic two", "Epic three"]
 
@@ -36,6 +37,7 @@ def main():
 
         link_response = create_epic_link(epic_key, uber_epic_key, 'Relates')
         print(link_response)
+
 
 @atexit.register
 def final_function():

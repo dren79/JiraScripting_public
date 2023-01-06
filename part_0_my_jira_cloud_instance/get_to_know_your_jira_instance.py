@@ -25,5 +25,5 @@ def main():
 
 if __name__ == "__main__":
     my_instance_details = main()
-    with open(f'part_0_my_jira_cloud_instance/output/my_instance_details.json', 'w') as outfile:
+    with open(f'part_0_my_jira_cloud_instance/output/my_instance_details.json', 'w+') as outfile:
         json.dump(my_instance_details, outfile)
