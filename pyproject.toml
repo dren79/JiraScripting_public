@@ -1,6 +1,6 @@
 [project]
 name="jirascripting"
-version='0.0.4'
+version='0.0.5'
 description='Methods for interacting with Jira Cloud'
 authors = [
   { name="David Renton", email="davidleerenton@gmail.com" },

@@ -1,6 +1,6 @@
 import requests
 import json
-from src.jirascripting.helpers.auth_and_headers import jira_auth_and_headers
+from src.jirascripting.auth_and_headers import jira_auth_and_headers
 
 
 def create_issue_parent(summary, project, description, assignee_id=None, priority="High", issue_type="Story", parent=None):

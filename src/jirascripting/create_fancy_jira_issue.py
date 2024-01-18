@@ -1,6 +1,6 @@
 import json
 import requests
-from src.jirascripting.helpers.auth_and_headers import jira_auth_and_headers
+from src.jirascripting.auth_and_headers import jira_auth_and_headers
 
 
 def create_fancy_issue(summary, project, description_doc, parent=None, assignee_id=None, priority="High", issue_type="Story"):
