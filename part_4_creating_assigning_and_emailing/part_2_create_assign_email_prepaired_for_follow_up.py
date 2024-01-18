@@ -4,8 +4,8 @@ import json
 import os
 from datetime import datetime
 
-from assignable_users.get_assignable_users import get_all_assignable_users_email
-from create_jira_tickets.create_fancy_jira_issue import create_issue
+from src import get_all_assignable_users_email
+from src import create_fancy_issue
 from emailer.aws_emailer.email_with_attachment import send_mail
 from part_4_creating_assigning_and_emailing._description_document import description_doc
 from part_4_creating_assigning_and_emailing._email_body import email_body
@@ -51,7 +51,7 @@ def main(file_, epic_, initiative_name_):
                 description_document = description_doc(first_name, last_name, email, gender, ip_address, message)
                 # Build and execute the call to the Jira Cloud API
                 try:
-                    res = create_issue(
+                    res = create_fancy_issue(
                         summary=f"From CSV - {first_name} {last_name}"
                         , project=project
                         , description_doc=description_document
@@ -96,7 +96,7 @@ def main(file_, epic_, initiative_name_):
 
 if __name__ == "__main__":
     initiative_name = "go_to_devfest"
-    input_file = "input/MOCK_DATA_WITH_PROJECT_3_lines.csv"
+    input_file = "input/MOCK_DATA_WITH_PROJECT.csv"
     epic = "D2-2"
     main(input_file, epic, initiative_name)
 
@@ -104,13 +104,13 @@ if __name__ == "__main__":
         init = json.load(initiative)
     print(json.dumps(init, indent=4))
 
-    # Some stories got added
-    ready_to_add_some_more = input("Ready to add more stories?")
-    initiative_name = "go_to_devfest"
-    input_file = "input/MOCK_DATA_WITH_PROJECT_6_lines.csv"
-    main(input_file, epic, initiative_name)
-
-    ready_to_see_the_result_2 = input("press any key")
-    with open(f'reports/{initiative_name}.json', 'r+') as initiative:
-        init = json.load(initiative)
-    print(json.dumps(init, indent=4))
+    # # Some stories got added
+    # ready_to_add_some_more = input("Ready to add more stories?")
+    # initiative_name = "go_to_devfest"
+    # input_file = "input/MOCK_DATA_WITH_PROJECT_6_lines.csv"
+    # main(input_file, epic, initiative_name)
+    #
+    # ready_to_see_the_result_2 = input("press any key")
+    # with open(f'reports/{initiative_name}.json', 'r+') as initiative:
+    #     init = json.load(initiative)
+    # print(json.dumps(init, indent=4))

@@ -1,4 +1,5 @@
 from json2html import *
+import pdfkit
 
 
 def json_to_html_page(input_):
@@ -36,3 +37,4 @@ if __name__ == "__main__":
     file = open('json2html.html', 'w')
     file.write(html_page)
     file.close()
+    pdfkit.from_file('json2html.html', 'json2html2pdf.pdf')

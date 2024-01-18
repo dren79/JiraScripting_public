@@ -1,8 +1,8 @@
 import csv
 import json
 
-from assignable_users.get_assignable_users import get_all_assignable_users_email
-from create_jira_tickets.create_fancy_jira_issue import create_issue
+from src import get_all_assignable_users_email
+from src import create_fancy_issue
 from part_3_creating_from_csv._description_document import description_doc
 
 assignable_users = get_all_assignable_users_email('D1')
@@ -28,7 +28,7 @@ def main(file_):
             message = row[6]
             # Create the description document
             description_document = description_doc(first_name, last_name, email, gender, ip_address, message)
-            res = create_issue(
+            res = create_fancy_issue(
                 summary=f"From CSV - {first_name} {last_name}"
                 , project="D2"
                 , description_doc=description_document

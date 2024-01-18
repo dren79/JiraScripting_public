@@ -1,5 +1,5 @@
 import requests
-from auth_and_headers import jira_auth_and_headers
+from src.jirascripting.helpers.auth_and_headers import jira_auth_and_headers
 import json
 
 

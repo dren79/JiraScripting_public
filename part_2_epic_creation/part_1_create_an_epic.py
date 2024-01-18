@@ -1,6 +1,6 @@
 import json
 
-from create_jira_tickets.create_jira_epic import create_epic
+from src import create_epic
 
 
 def main():

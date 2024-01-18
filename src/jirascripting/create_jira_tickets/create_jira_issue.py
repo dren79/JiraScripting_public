@@ -1,6 +1,6 @@
 import requests
 import json
-from auth_and_headers import jira_auth_and_headers
+from src import jira_auth_and_headers
 
 
 def create_issue(summary, project, description, epic_link=None, assignee_id=None, priority="High", issue_type="Story"):

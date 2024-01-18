@@ -1,24 +1,26 @@
 import requests
 import json
-from auth_and_headers import jira_auth_and_headers
+from src.jirascripting.helpers.auth_and_headers import jira_auth_and_headers
 
 
-def create_issue(summary, project, description, epic_link=None, assignee_id=None, priority="High", issue_type="Story", parent=None):
-    """Creates a story under an epic
+def create_issue_parent(summary, project, description, assignee_id=None, priority="High", issue_type="Story", parent=None):
+    """
+    Creates a story under an epic
 
-      Parameters:
-          summary (string): The issue summary.
-          project (string): Project key eg. SECCOMPPM.
-          description (string): The issue description.
-          epic_link (string): The epic identifier eg: SECCOMPPM-93.
-          assignee_id (string): The ID of the assignable user.
-          issue_type (string): Text description of what entity you wish to create eg, Story, Bug, Task
-          priority(string): Text Highest, High, Medium, Low, Lowest
+        Parameters:
+            parent (string): The key of the parent epic
+            summary (string): The issue summary.
+            project (string): Project key.
+            description (string): The issue description.
+            assignee_id (string): The ID of the assignable user.
+            issue_type (string): Text description of what entity you wish to create eg, Story, Bug, Task
+            priority(string): Text Highest, High, Medium, Low, Lowest
 
-      Returns:
-        response object: This will have the response code and in the text will have the details of the created issue.
+        Returns:
+            response object: This will have the response code and in the text will have the details of the created issue.
 
      """
+
     auth, headers, base_url = jira_auth_and_headers()
     # create content
     content_list = []
@@ -59,7 +61,7 @@ def create_issue(summary, project, description, epic_link=None, assignee_id=None
 
 
 if __name__ == "__main__":
-    res = create_issue(
+    res = create_issue_parent(
         summary="Parent test"
         , project="D1"
         , description="Parent test."

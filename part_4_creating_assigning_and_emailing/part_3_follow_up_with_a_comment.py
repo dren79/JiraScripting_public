@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-from helpers import get_issue_status, get_issue_status_category, add_fancy_comment_to_story, get_issue_assignee
+from src import get_issue_status, get_issue_status_category, add_fancy_comment_to_story, get_issue_assignee
 from part_4_creating_assigning_and_emailing._comment_document import comment_doc
 
 

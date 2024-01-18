@@ -1,8 +1,8 @@
 import atexit
 import json
 
-from create_jira_tickets.create_jira_epic import create_epic
-from helpers import create_epic_link
+from src import create_epic
+from src import create_epic_link
 from just_for_fun.HTML.json_to_html import json_to_html_page
 
 campaign_report = {}

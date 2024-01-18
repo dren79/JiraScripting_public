@@ -6,7 +6,7 @@ load_dotenv()
 
 
 def jira_auth_and_headers():
-    """Gets all fields set and vacant for the epic or story queried
+    """Uses .ENV file variables to authenticate to the Jira API
 
        Returns:
            auth: (HTTPBasicAuth object) for the Jira Cloud instance
@@ -18,7 +18,8 @@ def jira_auth_and_headers():
 
     headers = {
         "Accept": "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "X-ExperimentalApi": "opt-in"
     }
 
     url = os.environ.get("BASE_URL")

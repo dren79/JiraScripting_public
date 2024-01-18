@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-from helpers import get_issue_status, get_issue_status_category, get_issue_assignee
+from src import get_issue_status, get_issue_status_category, get_issue_assignee
 from part_4_creating_assigning_and_emailing._follow_up_email_body import email_body
 from emailer.aws_emailer.email_with_attachment import send_mail
 

@@ -1,9 +1,9 @@
-import requests
 import json
-from auth_and_headers import jira_auth_and_headers
+import requests
+from src.jirascripting.helpers.auth_and_headers import jira_auth_and_headers
 
 
-def create_issue(summary, project, description_doc, epic_link=None, assignee_id=None, priority="High", issue_type="Story"):
+def create_fancy_issue(summary, project, description_doc, parent=None, assignee_id=None, priority="High", issue_type="Story"):
     """Creates an ADF(markdown) story under an epic, use the pyadf library to build out the description document
     https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/
 
@@ -11,7 +11,7 @@ def create_issue(summary, project, description_doc, epic_link=None, assignee_id=
           :param summary: (string) The issue summary.
           :param project: (string) Project key eg. D1-1.
           :param description_doc: (string) Use the Document Builder here https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/.
-          :param epic_link: (string) The epic identifier eg: D1-1.
+          :param parent: (string): The key of the parent epic
           :param assignee_id: (string) The ID of the assignable user (use get_assignable_users to get this).
           :param issue_type: (string) Text name of the issue type you wish to create eg, Story, Bug, Task
           :param priority: (string) Text - Highest, High, Medium, Low, Lowest
@@ -24,8 +24,8 @@ def create_issue(summary, project, description_doc, epic_link=None, assignee_id=
 
     # create issue
     issue = {'fields': {}}
-    if epic_link is not None:
-        issue['fields']['parent'] = {'key': epic_link}
+    if parent is not None:
+        issue['fields']['parent'] = {'key': parent}
     issue['fields']['summary'] = summary
     issue['fields']['issuetype'] = {'name': issue_type}
     issue['fields']['project'] = {'key': project}
@@ -176,7 +176,7 @@ if __name__ == "__main__":
             }
         ]
     }
-    res = create_issue(
+    res = create_fancy_issue(
         summary="MarkDown Test"
         , project="D1"
         , description_doc=formatted_description

@@ -1,7 +1,7 @@
 import json
 
-from create_jira_tickets.create_jira_issue import create_issue
-from helpers import get_all_projects
+from src import create_issue
+from src import get_all_projects
 
 
 def main():

@@ -1,7 +1,7 @@
 import csv
 import json
 
-from create_jira_tickets.create_jira_issue import create_issue
+from src import create_issue
 
 
 def main(file_):

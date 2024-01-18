@@ -1,9 +1,9 @@
-from assignable_users.get_assignable_users import get_all_assignable_users_email
+from src import get_all_assignable_users_email
 import json
 
-from create_jira_tickets.create_jira_issue import create_issue
+from src import create_issue
 from just_for_fun.HTML.json_to_html import json_to_html_page
-from helpers import get_all_projects
+from src import get_all_projects
 
 
 def main():

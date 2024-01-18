@@ -1,6 +1,6 @@
 import requests
 import json
-from auth_and_headers import jira_auth_and_headers
+from src import jira_auth_and_headers
 
 
 def create_epic(summary, project, description, epic_name, priority, assignee_id="-1"):
